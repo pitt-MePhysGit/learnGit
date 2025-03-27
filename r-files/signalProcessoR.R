@@ -6,39 +6,41 @@ library(akima)# for interp
 library(Rwave)# for cwt
 library(scales)
 
-try(library(fastICA))
-try( source( paste('~/Dropbox/RSkernel/r-files/functions/call_fastICA.R',sep='') ) )
-try( source( paste('~/Dropbox/RSkernel/r-files/functions/save_fastICA.R',sep='') ) )
-try( source( paste('~/Dropbox/RSkernel/r-files/functions/removeICAcomponent.R',sep='') ) )
+repDir <- '~/pitt-MePhysGit'
 
-try( source( paste('~/Dropbox/RSkernel/r-files/lamiarLFPtheory/showICAcomponents.R',sep='') ) )
+try(library(fastICA))
+try( source( paste(repDir,'/RSkernel/r-files/functions/call_fastICA.R',sep='') ) )
+try( source( paste(repDir,'/RSkernel/r-files/functions/save_fastICA.R',sep='') ) )
+try( source( paste(repDir,'/RSkernel/r-files/functions/removeICAcomponent.R',sep='') ) )
+
+try( source( paste(repDir,'/RSkernel/r-files/lamiarLFPtheory/showICAcomponents.R',sep='') ) )
 
 try(library(xlsx))
 #try(library(xlsx2)) # why is xslx2 not being loaded?
 
-#source('~/Dropbox/r-compile/psyFit/R/psyfit.R')
-source('~/Dropbox/r-compile/psyfit/R/psyfit.R')
+#source(repDir,'/r-compile/psyFit/R/psyfit.R')
+source(repDir,'/r-compile/psyfit/R/psyfit.R')
 
-source('~/Dropbox/r-compile/rUtils/R/rUtils.R')
-source('~/Dropbox/r-compile/ePhysLab/R/ePhysLab.R')
-source('~/Dropbox/r-compile/mav.test/R/mav.test.R')
-source('~/Dropbox/r-compile/stereotax/R/stereotax.R')
+source(repDir,'/r-compile/rUtils/R/rUtils.R')
+source(repDir,'/r-compile/ePhysLab/R/ePhysLab.R')
+source(repDir,'/r-compile/mav.test/R/mav.test.R')
+source(repDir,'/r-compile/stereotax/R/stereotax.R')
 
 
-source('~/Dropbox/RSkernel/r-files/functions/tapered_fft.R')
-source('~/Dropbox/RSkernel/r-files/functions/tapered_ccf.R')
+source(repDir,'/RSkernel/r-files/functions/tapered_fft.R')
+source(repDir,'/RSkernel/r-files/functions/tapered_ccf.R')
 
 # files to be included in the signalProcessor pacakge:
-source( paste('~/Dropbox/changeDetection/r-files/functions/plotAnatomy.R',sep='') )
+source( paste(repDir,'/changeDetection/r-files/functions/plotAnatomy.R',sep='') )
 
-#source('~/Dropbox/r-compile/signalProcessor/R/wrapper_figures/wrapper_TRF_HeatPlot.R')
-source('~/Dropbox/r-compile/SignalProcessoR/R/wrapper_figures/wrapper_TRF_HeatPlot.R')
+#source(repDir,'/r-compile/signalProcessor/R/wrapper_figures/wrapper_TRF_HeatPlot.R')
+source(repDir,'/r-compile/SignalProcessoR/R/wrapper_figures/wrapper_TRF_HeatPlot.R')
 
-#source('~/Dropbox/r-compile/signalProcessor/R/wrapper_figures/wrapper_STRF_HeatPlot.R')
-source('~/Dropbox/r-compile/SignalProcessoR/R/wrapper_figures/wrapper_STRF_HeatPlot.R')
+#source(repDir,'/r-compile/signalProcessor/R/wrapper_figures/wrapper_STRF_HeatPlot.R')
+source(repDir,'/r-compile/SignalProcessoR/R/wrapper_figures/wrapper_STRF_HeatPlot.R')
 
-#source('~/Dropbox/r-compile/signalProcessor/R/wrapper_figures/wrapper_CWT_HeatPlot.R')
-source('~/Dropbox/r-compile/SignalProcessoR/R/wrapper_figures/wrapper_CWT_HeatPlot.R')
+#source(repDir,'/r-compile/signalProcessor/R/wrapper_figures/wrapper_CWT_HeatPlot.R')
+source(repDir,'/r-compile/SignalProcessoR/R/wrapper_figures/wrapper_CWT_HeatPlot.R')
 
 
 
@@ -59,7 +61,7 @@ prepDFsignalProcessor <- function(project,linkFileName=NULL){
   if (is.null(linkFileName))
     linkFileName    <- paste(project,'_link.txt',sep='')
   
-  projectDir  <- paste('~/Dropbox/',project,'/',sep='')
+  projectDir  <- paste(repDir,'/',project,'/',sep='')
   
   print( paste(projectDir,linkFileName,sep='') )   
   df         <- read.table(paste(projectDir,linkFileName,sep=''),header=T)
