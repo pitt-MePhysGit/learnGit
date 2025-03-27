@@ -1,5 +1,14 @@
 ## preliminaries ====
+system( 'git -C ~/pitt-MePhysDir/learnGit/ pull' )
+
+
+repoDir <- '~/pitt-MePhysGit'
+baseDir <- '~/Dropbox'
+
+
 library(gdata)
+
+
 
 
 ## plot something ====
