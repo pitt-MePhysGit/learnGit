@@ -6,7 +6,7 @@ library(akima)# for interp
 library(Rwave)# for cwt
 library(scales)
 
-repDir <- '~/pitt-MePhysGit'
+repDir <- '~/Dropbox'
 
 try(library(fastICA))
 try( source( paste(repDir,'/RSkernel/r-files/functions/call_fastICA.R',sep='') ) )
