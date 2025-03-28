@@ -1,14 +1,20 @@
-## pull the latest code from git  ====
-system( 'git -C ~/pitt-MePhysDir/learnGit/ pull' )
-
 ## define the paths ====
 repoDir <- '~/pitt-MePhysGit'
 baseDir <- '~/Dropbox'
 
-source(repoDir,'/r-compile/rUtils/R/rUtils.R')
-source(repoDir,'/r-compile/ePhysLab/R/ePhysLab.R')
-source(repoDir,'/r-compile/mav.test/R/mav.test.R')
-source(repoDir,'/r-compile/stereotax/R/stereotax.R')
+print(paste("Using ", repoDir ,' repository.', sep=''))
+
+## pull the latest code from git  ====
+print(' Local branch: ')
+system(paste( 'git -C ',repoDir,'/learnGit/ branch',sep='') )
+
+
+print(' Pull the latest from the local branch ')
+system(paste( 'git -C ',repoDir,'/learnGit/ pull',sep='') )
+
+source(paste(baseDir,'/r-compile/rUtils/R/rUtils.R',sep=''))
+
+
 
 
 ## load libraries ====
