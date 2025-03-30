@@ -4,13 +4,19 @@ baseDir <- '~/Dropbox'
 
 print(paste("Using ", repoDir ,' repository.', sep=''))
 
-## pull the latest code from git  ====
-print(' Local branch: ')
-system(paste( 'git -C ',repoDir,'/learnGit/ branch',sep='') )
+repoList <- list('amRF','learnGit')
 
-
-print(' Pull the latest from the local branch ')
-system(paste( 'git -C ',repoDir,'/learnGit/ pull',sep='') )
+for (ix in 1:length(repoList)){
+  ## pull the latest code from git  ====
+  print(paste('Project: ', repoList[ix]), sep='')
+  
+  print(' Local branch: ')
+  system(paste( 'git -C ',repoDir,'/',repoList[ix],'/ branch',sep='') )
+  
+  
+  print(' Pull the latest from the local branch ')
+  system(paste( 'git -C ',repoDir,'/',repoList[ix],'/ pull',sep='') )
+}
 
 source(paste(baseDir,'/r-compile/rUtils/R/rUtils.R',sep=''))
 
