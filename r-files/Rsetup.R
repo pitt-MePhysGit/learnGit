@@ -16,15 +16,16 @@ print(paste("Using ", repoDir ,' repository.', sep=''))
 
 
 # list all projects with source-code either on Dropbox or pitt-MePhysGit) ====
-projectList <- list('activeTRF','ampOddClick','amRF', 'chait','changeDetection','clickGroup','cyyclicNoise2','detectTone',
-                    'DRF','DTRF','durOdd','dynamicChords','eCog','EFR','ephysLab','harmonicity','learnGit','MFF','narrowBandNoise',
-                    'noiseTRF','reactivationTRF','resting','rewardAnticipation','RFmap','RSkernel','SMART','SSA','ssrt',
-                    'STRF','stroop','sweepRF','tDCS','temporalDiscounting','textures','TRF','vocalizations','whiteNoiseDetection')
+projectList <- c('activeTRF','ampOddClick','amRF', 'chait','changeDetection','clickGroup','cyyclicNoise2','detectTone',
+                 'DRF','DTRF','durOdd','dynamicChords','eCog','EFR','ephysLab','harmonicity','MFF','narrowBandNoise',
+                  'noiseTRF','reactivationTRF','resting','rewardAnticipation','RFmap','RSkernel','SMART','SSA','ssrt',
+                  'STRF','stroop','sweepRF','tDCS','temporalDiscounting','textures','TRF','vocalizations','whiteNoiseDetection')
 
 # list all projects that have been transferred to pitt-MePhysGit          ====
-repoList      <- list('amRF','learnGit')
-projectFrame  <- data.frame( name = unlist(projectList), dir = '~/Dropbox/', branch = 'NA')
+repoList      <- c('amRF','learnGit')
+projectFrame  <- data.frame( name = unlist(projectList), dir = '~/Dropbox/', branch = 'NA', git=F)
 
+projectFrame$git[    which(projectFrame$name %in% repoList) ] <- T
 projectFrame$dir[    which(projectFrame$name %in% repoList) ] <- repoName
 projectFrame$branch[ which(projectFrame$name %in% repoList) ] <- 'main'
 
@@ -32,15 +33,33 @@ projectFrame$branch[ which(projectFrame$name %in% repoList) ] <- 'main'
 # adjust branches individually                                            ====
 
 # template:
-projectFrame$branch[which(projectFrame$name=='learnGit')] <- 'kifBranch'
+# projectFrame$branch[which(projectFrame$name=='learnGit')] <- 'kifBranch'
 
 
+## handle toolboxes                                                       ====
+compileList <- list('deadlineModel','ePhysLab','eRnii','fokkerPlank','mav.test','MePhys','mph.test','psyfit','rgenoud',
+                    'RPE2PSEShift','rUtils','sdt','SignalProcessor','stereotax','variableDriftrateToolBox',
+                    'visualizR','wieneR')
+
+repoList     <- c(unlist(repoList), 'deadlineModel')
+compileFrame <- data.frame(name = unlist(compileList), dir = '~/Dropbox/toolbox/', branch = 'NA', git = F)
+
+compileFrame$git[    which(compileFrame$name %in% repoList) ] <- T
+compileFrame$dir[    which(compileFrame$name %in% repoList) ] <- paste(repoName,'/toolbox/',sep='')
+compileFrame$branch[ which(compileFrame$name %in% repoList) ] <- 'main'
+
+
+# combine the two frames:
+projectFrame <- rbind(projectFrame, compileFrame)
 
 ## pull the latest code from git   ==== 
-rndx <- which(projectFrame$dir == repoName)
+rndx <- which(projectFrame$git == T)
+# list the projects in git repository
+projectFrame[rndx,]
+
 for (ix in rndx ){
  
-  print(' ========================== ')
+  print(' >>>>>>>>>>>>>>>>>>>>>>>>>>> ')
   print( paste('Project: ', projectFrame$name[ix], ' - branch: ', projectFrame$branch[ix], sep='') )
   
   print('switch to correct branch')
@@ -51,7 +70,7 @@ for (ix in rndx ){
   
   print(' Pull the latest from the local branch ')
   system(paste( 'git -C ',repoDir,'/',projectFrame$name[ix],'/ pull',sep='') )
-  print('>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+  print(' <<<<<<<<<<<<<<<<<<<<<<<<<<<<  ')
   
 }
 
@@ -69,11 +88,7 @@ library(akima)# for interp
 library(Rwave)# for cwt
 library(scales)
 
+## source functions                ====
 
 
 
-## plot something                  ====
-plot(1:20, pch=1:20, col=1:20)
-
-## how about a different plot 
-plot( 1:10, (1:10)/2 )
