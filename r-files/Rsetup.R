@@ -12,6 +12,12 @@
 # if you are coding locally and have not pushed the changes to git, then
 # the pull command will overwrite the local changes.
 #
+# OK. Just adding a line. What happens if I pull now.
+# Seems to be fine with adding lines...
+# what if I change an existing line...
+# also no problem. So it may be OK as long as nobody pushes a different version while you are working
+
+# try git diff by adding this one line
 
 ## define the paths                                                       ====
 repoName <- 'pitt-MePhysGit'
