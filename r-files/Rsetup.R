@@ -96,5 +96,5 @@ library(scales)
 
 ## source functions                ====
 # this is where the list of files to source would go:
-
+# test if I can commit via ssh from kif
 
