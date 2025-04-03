@@ -7,6 +7,12 @@
 # prior to sourcing the code, it switches to the specified branch
 # and performs a pull request to get the latest code.
 
+
+# problem:
+# if you are coding locally and have not pushed the changes to git, then
+# the pull command will overwrite the local changes.
+#
+
 ## define the paths                                                       ====
 repoName <- 'pitt-MePhysGit'
 repoDir  <- paste('~/',repoName, sep='')
@@ -41,7 +47,7 @@ compileList <- list('deadlineModel','ePhysLab','eRnii','fokkerPlank','mav.test',
                     'RPE2PSEShift','rUtils','sdt','SignalProcessor','stereotax','variableDriftrateToolBox',
                     'visualizR','wieneR')
 
-repoList     <- c(unlist(repoList), 'deadlineModel')
+repoList     <- c(unlist(repoList), 'exampleToolbox')
 compileFrame <- data.frame(name = unlist(compileList), dir = '~/Dropbox/toolbox/', branch = 'NA', git = F)
 
 compileFrame$git[    which(compileFrame$name %in% repoList) ] <- T
